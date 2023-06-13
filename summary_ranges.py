@@ -16,34 +16,26 @@
 import time
 
 def summaryRanges(nums: list[int]) -> list[str]:
-    range = []
-    temp = ''
-    if len(nums) == 1:
-        return [str(nums[0])]
-    if len(nums) == 0:
-        return []
-    for i, x in enumerate(nums[:-1]):
-        if x+1 != nums[i+1]:
-            if temp == '':
-                range.append(str(x))
-            else:
-                temp += '->' + str(x)
-                range.append(temp)
-                temp = ''
-        else:
-            if temp == '':
-                temp = str(x)
-    if len(temp) == 1:
-        if int(temp)+1 == nums[-1]:
-            temp += '->' + str(nums[-1])
-            range.append(temp)
-        else:
-            range.append(temp)
-            range.append(str(nums[-1]))
-    else:
-        range.append(str(nums[-1]))
+    if not nums:
+            return []
 
-    return range
+    ranges = []
+    start = nums[0]
+
+    for i in range(1, len(nums)):
+        if nums[i] != nums[i-1] + 1:
+            if start == nums[i-1]:
+                ranges.append(str(start))
+            else:
+                ranges.append(str(start) + "->" + str(nums[i-1]))
+            start = nums[i]
+
+    if start == nums[-1]:
+        ranges.append(str(start))
+    else:
+        ranges.append(str(start) + "->" + str(nums[-1]))
+
+    return ranges
 
         
 
