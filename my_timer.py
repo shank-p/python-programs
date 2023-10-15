@@ -9,7 +9,9 @@ def my_timer(func):
         start_time = time.time()
         result = func(*args, **kwargs)
         end_time = time.time()
-        print(f'Elapsed time of "{func.__name__}" ->', end_time-start_time)
+        print(f' ----- "{func.__name__}" ----- ')
+        print(f'Elapsed time ->', end_time-start_time)
+        print()
         return result
     return wrapper
     
